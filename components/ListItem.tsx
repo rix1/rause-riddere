@@ -15,7 +15,7 @@ export function ListItem(
       {...props}
       class=""
     >
-      <Td class={`${spacing} `}>
+      <Td class={`${spacing} select-none`}>
         {!hasVoted && (
           <button
             disabled={hasVoted}
@@ -30,7 +30,7 @@ export function ListItem(
           </button>
         )}
       </Td>
-      <Td class={`${spacing} pl-3 min-w-16 text-center`}>
+      <Td class={`${spacing} pl-3 min-w-16 text-center select-none`}>
         <span class={`text-2xl ${hasVoted && "text-orange-500 font-medium"}`}>
           {count}
         </span>
@@ -42,7 +42,7 @@ export function ListItem(
             {hasVoted && (
               <small>
                 <button
-                  class="px-2 rounded bg-white hover:bg-gray-200"
+                  class="px-2 rounded bg-white hover:bg-gray-200 select-none"
                   onClick={() => {
                     setHasVoted(false);
                     count.value -= 1;

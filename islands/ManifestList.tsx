@@ -5,9 +5,9 @@ export default function Counter() {
     <table class="space-y-3">
       <thead class="sr-only">
         <tr>
-          <td>Actions</td>
-          <td>Vote</td>
-          <td>Content</td>
+          <td>Stem opp</td>
+          <td>Stemmer</td>
+          <td>Sitat</td>
         </tr>
       </thead>
       <tbody>
