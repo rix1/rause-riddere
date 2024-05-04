@@ -4,10 +4,12 @@ import { useSignal } from "@preact/signals";
 import { useState } from "preact/hooks";
 import { Td } from "./Table.tsx";
 
+type Props = { initialVote?: number } & JSX.HTMLAttributes<HTMLTableRowElement>;
+
 export function ListItem(
-  { children, ...props }: JSX.HTMLAttributes<HTMLTableRowElement>,
+  { children, ...props }: Props,
 ) {
-  const count = useSignal<number>(0);
+  const count = useSignal<number>(props.initialVote || 0);
   const [hasVoted, setHasVoted] = useState(false);
   const spacing = "pb-1";
   return (
@@ -23,7 +25,7 @@ export function ListItem(
             style={{ verticalAlign: "bottom" }}
             onClick={() => {
               setHasVoted(true);
-              count.value += 10;
+              count.value += 1;
             }}
           >
             ↑
