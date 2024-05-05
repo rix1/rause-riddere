@@ -1,8 +1,8 @@
 # Rause Riddere w/votes
 
-This is a site that let you read and vote on different items in the manifest of
-"Rause Riddere", an ethos jokingly created by "Erlend & Steinar", a
-[Norwegian podcast on NRK](https://radio.nrk.no/podkast/baade_erlend_og_steinar_/l_edf54d11-d100-4c12-b54d-11d100fc12f9).
+This is a site that let you read and vote on different principles from the "manifest" of
+"Rause Riddere", an ethos jokingly created by [Erlend & Steinar](https://radio.nrk.no/podkast/baade_erlend_og_steinar_/l_edf54d11-d100-4c12-b54d-11d100fc12f9) (a
+Norwegian podcast on NRK).
 
 ### Usage
 
