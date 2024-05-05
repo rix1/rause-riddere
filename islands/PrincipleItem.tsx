@@ -2,26 +2,28 @@ import { useSignal } from "@preact/signals";
 import { JSX } from "preact";
 import { useState } from "preact/hooks";
 import { Td } from "../components/Table.tsx";
-import { Item } from "../models/item.ts";
+import { Principle } from "../models/principle.ts";
 
-type Props = { item: Item } & JSX.HTMLAttributes<HTMLTableRowElement>;
+type Props = { principle: Principle } & JSX.HTMLAttributes<HTMLTableRowElement>;
 
-export function ListItem(
-  { item }: Props,
+export function PrincipleItem(
+  { principle }: Props,
 ) {
-  const count = useSignal<number>(item.votes || 0);
+  const vote = useSignal<number>(principle.vote || 0);
   const [hasVoted, setHasVoted] = useState(false);
   return (
     <tr>
-      <Td class={`pb-8 select-none`}>
+      <Td class="pb-8 select-none">
         {!hasVoted && (
           <button
+            type="submit"
+            name="increment"
+            value="true"
             disabled={hasVoted}
-            class="px-2 font-mono border-gray-500 border rounded-sm bg-white hover:bg-gray-200"
-            style={{ verticalAlign: "bottom" }}
+            class="px-2 font-mono border-gray-500 border rounded-sm bg-white hover:bg-gray-200 align-bottom"
             onClick={() => {
               setHasVoted(true);
-              count.value += 1;
+              vote.value += 1;
             }}
           >
             ↑
@@ -30,28 +32,31 @@ export function ListItem(
       </Td>
       <Td class="pb-8 pl-3 min-w-16 text-center select-none">
         <span class={`text-2xl ${hasVoted && "text-orange-500 font-medium"}`}>
-          {count}
+          {vote}
         </span>
       </Td>
       <Td class="pb-8">
         <div>
-          <p class="ml-2 text-2xl">{item.content}</p>
-          <div className="space-x-2">
+          <p class="ml-2 text-2xl">{principle.content}</p>
+          <div class="space-x-2">
             {hasVoted && (
               <small>
                 <button
+                  type="submit"
+                  name="increment"
+                  value="false"
                   class="px-2 rounded bg-white hover:bg-gray-200 select-none"
                   onClick={() => {
                     setHasVoted(false);
-                    count.value -= 1;
+                    vote.value -= 1;
                   }}
                 >
                   Fjern stemme
                 </button>
               </small>
             )}
-            <small class="">{item.id}</small>
-            <small class="opacity-0">{count} stemmer totalt</small>
+            <small class="opacity-0 select-none">{vote} stemmer totalt</small>
+            <small class="opacity-0 select-none">ID: {principle.id}</small>
           </div>
         </div>
       </Td>

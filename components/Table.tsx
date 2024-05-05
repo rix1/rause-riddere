@@ -1,4 +1,5 @@
 import { JSX } from "preact";
+
 export const Td = (
   { children, ...props }: JSX.HTMLAttributes<HTMLTableCellElement>,
 ) => {

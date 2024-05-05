@@ -1,25 +1,23 @@
 import { FreshContext } from "$fresh/server.ts";
-import { updateItemVote } from "../../../models/db.ts";
+import { updatePrincipleVote } from "../../../models/db.ts";
 
 export const handler = async (
   req: Request,
   ctx: FreshContext,
 ): Promise<Response> => {
-  try {
-    // Extract item ID from URL path parameters
-    const { id } = ctx.params;
+  console.log(req.method);
 
-    // Extract decrement query parameter (defaults to false if not provided)
+  // if (req.method !== "PUT") {
+  //   return new Response("Method Not Allowed", { status: 405 });
+  // }
+
+  try {
+    const { id } = ctx.params;
     const decrement = req.url.includes("?decrement");
 
-    // Call updateItemVote function with extracted parameters
-    const updatedVote = await updateItemVote(id, decrement);
+    await updatePrincipleVote(id, decrement);
 
-    // Return success response with updated vote
-    return new Response(JSON.stringify(updatedVote), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(null, { status: 204 });
   } catch (error) {
     // Handle errors
     console.error("Error updating vote:", error);

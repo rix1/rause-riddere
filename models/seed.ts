@@ -1,7 +1,7 @@
 import { hashString } from "../utils/hashString.ts";
-import { Item } from "./item.ts";
+import { Principle } from "./principle.ts";
 
-export const originalData = [
+export const ogPrinciples = [
   "Vi skal løfte Norske menn",
   "Vi skal bli en maktfaktor i norsk politikk",
   "Vi står for militant raushet",
@@ -59,17 +59,17 @@ export const originalData = [
   "Vi oppfører oss med fremmede som om det er 200 folk som bor i byen",
 ];
 
-export async function getSeedItems(): Promise<Item[]> {
-  const items: Item[] = [];
-  for (let i = 0; i < originalData.length; i++) {
-    const content = originalData[i];
+export async function buildPrincipleSeed(): Promise<Principle[]> {
+  const principles: Principle[] = [];
+  for (let i = 0; i < ogPrinciples.length; i++) {
+    const content = ogPrinciples[i];
     const id = await hashString(content);
-    items.push({
+    principles.push({
       id,
       content,
-      votes: 0,
+      vote: 0,
     });
   }
 
-  return items;
+  return principles;
 }
