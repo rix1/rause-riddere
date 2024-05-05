@@ -5,7 +5,7 @@ This is a site that let you read and vote on different principles from the "mani
 Norwegian podcast on NRK).
 
 
-![CleanShot 2024-05-05 at 18 57 11@2x](https://github.com/rix1/rause-riddere/assets/2470775/052ecb18-e2fe-406c-9a00-74f79a0019f1)
+![CleanShot 2024-05-05 at 19 07 53@2x](https://github.com/rix1/rause-riddere/assets/2470775/96a03409-3363-4ba1-bdf2-8830b75a0c47)
 
 
 
