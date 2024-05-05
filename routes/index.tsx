@@ -1,31 +1,9 @@
-import { Handlers, RouteContext } from "$fresh/server.ts";
-import Alert from "../components/Alert.tsx";
+import { RouteContext } from "$fresh/server.ts";
 import { PrincipleItem } from "../islands/PrincipleItem.tsx";
-import { getAllPrinciples, updatePrincipleVote } from "../models/db.ts";
-
-export const handler: Handlers = {
-  async POST(req, ctx) {
-    const formData = await req.formData();
-    const id = formData.get("principleId");
-    const increment = formData.get("increment");
-
-    if (!id || typeof id !== "string") {
-      const resp = await ctx.render({ error: ["ID is required"] }, {
-        status: 400,
-      });
-      return resp;
-    }
-
-    await updatePrincipleVote(id, Boolean(increment));
-
-    const resp = await ctx.render();
-    return resp;
-  },
-};
+import { getAllPrinciples } from "../models/db.ts";
 
 export default async function Page(req: Request, ctx: RouteContext) {
-  const principles = await getAllPrinciples();
-  const error = ctx.data?.error;
+  const principles = await getAllPrinciples(req);
 
   return (
     <div class="px-4 py-8 mx-auto">
@@ -42,7 +20,6 @@ export default async function Page(req: Request, ctx: RouteContext) {
             Rause ridderes begynnelse
           </a>.
         </p>
-        <Alert error={error} />
         <table class="space-y-3">
           <thead class="sr-only">
             <tr>

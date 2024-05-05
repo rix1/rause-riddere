@@ -5,20 +5,21 @@ export const handler = async (
   req: Request,
   ctx: FreshContext,
 ): Promise<Response> => {
-  // if (req.method !== "PUT") {
-  //   return new Response("Method Not Allowed", { status: 405 });
-  // }
+  if (req.method !== "PUT") {
+    return new Response("Use PUT instead", { status: 405 });
+  }
+
+  const { id } = ctx.params;
+  const increment = new URL(req.url).searchParams.get("increment") === "true";
 
   try {
-    const { id } = ctx.params;
-    const decrement = req.url.includes("?decrement");
+    const response = new Response(null, { status: 204 });
+    await updatePrincipleVote(id, increment);
 
-    await updatePrincipleVote(id, decrement);
-
-    return new Response(null, { status: 204 });
+    return response;
   } catch (error) {
     // Handle errors
     console.error("Error updating vote:", error);
-    return new Response("Not Found", { status: 404 });
+    return new Response(`Could not find principle ${id}`, { status: 404 });
   }
 };
