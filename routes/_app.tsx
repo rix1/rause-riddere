@@ -21,6 +21,26 @@ export default function App({ Component }: PageProps) {
       <body>
         <Component />
       </body>
+      <footer className="text-gray-500 text-sm text-center mb-16 max-w-screen-md mx-auto">
+        <p>
+          Dette er et proof-of-concept på hvordan{" "}
+          <a href="https://www.tiktok.com/@filipjohansen">@filipjohansen's</a>
+          {" "}
+          <a class="text-[#db2777]" href="https://www.rauseriddere.no/">
+            rauseriddere.no
+          </a>{" "}
+          ville vært med upvotes.
+        </p>
+        <p>
+          Laget av <a class="text-[#db2777]" href="https://rix1.dev">@rix1</a>
+          {" "}
+          ved hjelp av{" "}
+          <a class="text-[#db2777]" href="https://fresh.deno.dev/">
+            Deno Fresh
+          </a>{" "}
+          og <a class="text-[#db2777]" href="https://deno.com/kv">Deno KV</a>.
+        </p>
+      </footer>
     </html>
   );
 }
