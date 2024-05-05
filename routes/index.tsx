@@ -1,6 +1,18 @@
-import ManifestList from "../islands/ManifestList.tsx";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import { ListItem } from "../islands/ListItem.tsx";
+import { getAllItems } from "../models/db.ts";
+import { Item } from "../models/item.ts";
 
-export default function Home() {
+export const handler: Handlers<Item[]> = {
+  async GET(_req, ctx) {
+    const items = await getAllItems();
+    return ctx.render(items);
+  },
+};
+
+export default function Home(props: PageProps) {
+  const items: Item[] = props.data;
+
   return (
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
@@ -46,7 +58,18 @@ export default function Home() {
             Rause ridderes begynnelse
           </a>
         </p>
-        <ManifestList />
+        <table class="space-y-3">
+          <thead class="sr-only">
+            <tr>
+              <td>Stem opp</td>
+              <td>Stemmer</td>
+              <td>Sitat</td>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => <ListItem item={item} />)}
+          </tbody>
+        </table>
       </div>
     </div>
   );

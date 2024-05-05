@@ -1,23 +1,19 @@
-import { JSX } from "preact";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useSignal } from "@preact/signals";
+import { JSX } from "preact";
 import { useState } from "preact/hooks";
-import { Td } from "./Table.tsx";
+import { Td } from "../components/Table.tsx";
+import { Item } from "../models/item.ts";
 
-type Props = { initialVote?: number } & JSX.HTMLAttributes<HTMLTableRowElement>;
+type Props = { item: Item } & JSX.HTMLAttributes<HTMLTableRowElement>;
 
 export function ListItem(
-  { children, ...props }: Props,
+  { item }: Props,
 ) {
-  const count = useSignal<number>(props.initialVote || 0);
+  const count = useSignal<number>(item.votes || 0);
   const [hasVoted, setHasVoted] = useState(false);
-  const spacing = "pb-1";
   return (
-    <tr
-      {...props}
-      class=""
-    >
-      <Td class={`${spacing} select-none`}>
+    <tr>
+      <Td class={`pb-8 select-none`}>
         {!hasVoted && (
           <button
             disabled={hasVoted}
@@ -32,15 +28,15 @@ export function ListItem(
           </button>
         )}
       </Td>
-      <Td class={`${spacing} pl-3 min-w-16 text-center select-none`}>
+      <Td class="pb-8 pl-3 min-w-16 text-center select-none">
         <span class={`text-2xl ${hasVoted && "text-orange-500 font-medium"}`}>
           {count}
         </span>
       </Td>
-      <Td class={`${spacing}`}>
+      <Td class="pb-8">
         <div>
-          <p class="ml-2 text-2xl">{children}</p>
-          <div>
+          <p class="ml-2 text-2xl">{item.content}</p>
+          <div className="space-x-2">
             {hasVoted && (
               <small>
                 <button
@@ -54,6 +50,7 @@ export function ListItem(
                 </button>
               </small>
             )}
+            <small class="">{item.id}</small>
             <small class="opacity-0">{count} stemmer totalt</small>
           </div>
         </div>

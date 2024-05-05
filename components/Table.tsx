@@ -4,10 +4,7 @@ export const Td = (
 ) => {
   return (
     <td
-      class={`relative ${props.class}`}
-      style={{
-        "verticalAlign": "baseline",
-      }}
+      class={`relative align-baseline ${props.class}`}
     >
       {children}
     </td>

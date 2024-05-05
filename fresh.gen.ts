@@ -5,8 +5,9 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $api_update_vote_id_ from "./routes/api/update-vote/[id].ts";
 import * as $index from "./routes/index.tsx";
-import * as $ManifestList from "./islands/ManifestList.tsx";
+import * as $ListItem from "./islands/ListItem.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -14,10 +15,11 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/api/update-vote/[id].ts": $api_update_vote_id_,
     "./routes/index.tsx": $index,
   },
   islands: {
-    "./islands/ManifestList.tsx": $ManifestList,
+    "./islands/ListItem.tsx": $ListItem,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
