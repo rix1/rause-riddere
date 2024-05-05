@@ -1,4 +1,4 @@
-# Rause Riddere Votes
+# Rause Riddere w/votes
 
 This is a site that let you read and vote on different items in the manifest of
 "Rause Riddere", an ethos jokingly created by "Erlend & Steinar", a
