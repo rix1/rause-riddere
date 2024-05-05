@@ -10,16 +10,14 @@ export async function getAllPrinciples(): Promise<Principle[]> {
     principles.push(principle.value);
   }
 
-  return principles;
+  return principles.sort((a, b) => b.vote - a.vote);
 }
 
 export async function updatePrincipleVote(
   principleId: string,
-  decrement: boolean = false,
+  increment: boolean = true,
 ) {
   const primaryKey = ["principle", principleId];
-
-  console.log(primaryKey);
 
   let res = { ok: false };
   let prevVote = 0;
@@ -30,7 +28,7 @@ export async function updatePrincipleVote(
     const principle = isPrinciple(principleRes.value);
 
     prevVote = principle.vote;
-    newVote = prevVote + (decrement ? -1 : 1);
+    newVote = prevVote + (increment ? 1 : -1);
 
     res = await kv.atomic().check(principleRes).set(primaryKey, {
       ...principle,

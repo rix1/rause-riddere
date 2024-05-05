@@ -5,8 +5,6 @@ export const handler = async (
   req: Request,
   ctx: FreshContext,
 ): Promise<Response> => {
-  console.log(req.method);
-
   // if (req.method !== "PUT") {
   //   return new Response("Method Not Allowed", { status: 405 });
   // }
