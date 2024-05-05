@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_seed from "./routes/api/seed.ts";
 import * as $api_update_vote_id_ from "./routes/api/update-vote/[id].ts";
 import * as $index from "./routes/index.tsx";
 import * as $PrincipleItem from "./islands/PrincipleItem.tsx";
@@ -13,6 +14,7 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/api/seed.ts": $api_seed,
     "./routes/api/update-vote/[id].ts": $api_update_vote_id_,
     "./routes/index.tsx": $index,
   },
